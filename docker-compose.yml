@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/apache/Dockerfile
+    volumes:
+      - .:/var/www/html
+    hostname: web.local
+    ports:
+      - 80:80
+      - 443:443
+    networks:
+      - back
+      
+  
+
+networks:
+  back:
+    driver: bridge
