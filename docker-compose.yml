@@ -2,6 +2,7 @@ version: "3"
 
 services:
 <<<<<<< HEAD
+<<<<<<< HEAD
       
 
   mysqlmaster:
@@ -29,6 +30,8 @@ services:
     depends_on:
       - mysqlmaster
 =======
+=======
+>>>>>>> ece486ed2118c688ae2353a9a01803aaa15f702d
   app:
     build:
       context: .
@@ -36,6 +39,9 @@ services:
     volumes:
       - .:/var/www/html
     hostname: web.local
+<<<<<<< HEAD
+>>>>>>> ece486ed2118c688ae2353a9a01803aaa15f702d
+=======
 >>>>>>> ece486ed2118c688ae2353a9a01803aaa15f702d
     ports:
       - 80:80
@@ -43,6 +49,10 @@ services:
     networks:
       - back
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+      
+>>>>>>> ece486ed2118c688ae2353a9a01803aaa15f702d
 =======
       
 >>>>>>> ece486ed2118c688ae2353a9a01803aaa15f702d
