@@ -24,7 +24,7 @@ RUN mkdir -p \
   
 RUN apt-get update
 RUN apt-get install -y zlib1g-dev libicu-dev g++
-
+RUN apt-get install locate
 RUN docker-php-ext-configure intl
 RUN docker-php-ext-install intl
 RUN docker-php-ext-install pdo_mysql
@@ -47,6 +47,7 @@ COPY ./docker/development/apache/certs/weblocal.crt /etc/certs/weblocal.crt
 
 
 ENV PATH="${PATH}:/var/www/html/"
+ENV PATH="${PATH}:/var/www/html/app/bin"
 
 # Enable SSL
 RUN a2enmod ssl
