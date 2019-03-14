@@ -6,4 +6,4 @@ Installed Application installed
 - PHP 7.2.16
 - Mysql 5.7
 - CakePHP 3.7.4
-
+- Downloads the lastest version of Composer
