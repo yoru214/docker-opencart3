@@ -1,7 +1,9 @@
-# Docker YML for PHPv7.2.16
+# Docker YML for CakePHPv3.7.4
 
 
-Docker Compose Project to run a server using PHP Version 7.2.16. 
-Comes with the latest version of Composer
+Docker Compose Project to run a development server for CakePHP version 3.7.4
+Installed Application installed
+- PHP 7.2.16
+- Mysql 5.7
+- CakePHP 3.7.4
 
-/*docker-php7.2.16*/
