@@ -21,6 +21,13 @@ RUN mkdir -p \
     tmp \
   && chmod -R 770 \
     tmp
+  
+RUN apt-get update
+RUN apt-get install -y zlib1g-dev libicu-dev g++
+
+RUN docker-php-ext-configure intl
+RUN docker-php-ext-install intl
+RUN docker-php-ext-install pdo_mysql
 
 
 # COPY apache configuration setting web.local as server name

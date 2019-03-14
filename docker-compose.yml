@@ -3,7 +3,7 @@ version: "3"
 services:
       
 
-  db:
+  mysqlmaster:
     build:
       context: .
       dockerfile: docker/development/mysql/Dockerfile
@@ -23,10 +23,10 @@ services:
       context: .
       dockerfile: docker/development/apache/Dockerfile
     volumes:
-      - ./app_data:/var/www/html
+      - ./app:/var/www/html
     hostname: web.local
     depends_on:
-      - db
+      - mysqlmaster
     ports:
       - 80:80
       - 443:443

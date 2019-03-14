@@ -1,31 +1,28 @@
 version: "3"
 
 services:
-      
-
-  db:
+  mysqlmaster:
     image: mysql:5.7
     volumes:
        - ./db_data/master:/var/lib/mysql
+       - ./docker/production/mysql/master/config:/etc/mysql/conf.d/
+    hostname: mysqlmaster
     environment:
-      MYSQL_DATABASE: cake3db
       MYSQL_ROOT_PASSWORD: p4ssw0rd!
     ports:
       - 3306:3306 
     networks:
       - back
       
-  db_slave:
+  mysqlslave:
     image: mysql:5.7
     depends_on:
-      - db
+      - mysqlmaster
     volumes:
        - ./db_data/slave:/var/lib/mysql
        - ./docker/production/mysql/slave/config:/etc/mysql/conf.d/
     environment:
-      MYSQL_DATABASE: cake3db
       MYSQL_ROOT_PASSWORD: p4ssw0rd!
-      MYSQL_ROOT_HOST: '%'
     ports:
       - 3307:3306
     expose:
@@ -34,7 +31,28 @@ services:
     
     networks:
       - back
+
       
+  mysqlconfigure:
+    build:
+      context: .
+      dockerfile: docker/production/mysql/configure/Dockerfile
+    depends_on:
+      - mysqlmaster
+      - mysqlslave
+    environment:
+      - "MYSQL_SLAVE_PASSWORD=p4ssw0rd!"
+      - "MYSQL_MASTER_PASSWORD=p4ssw0rd!"
+      - "MYSQL_ROOT_PASSWORD=p4ssw0rd!"
+      - "MYSQL_REPLICATION_USER=p4ssw0rd!"
+      - "MYSQL_REPLICATION_PASSWORD=p4ssw0rd!"
+    volumes:
+      - ./docker/production/shell/mysql/:/tmp/shell/
+    command: 
+      - /tmp/shell/mysql_connector.sh
+    networks:
+      - back
+
   app:
     build:
       context: .
@@ -43,7 +61,7 @@ services:
       - ./app_data:/var/www/html
     hostname: web.local
     depends_on:
-      - db
+      - mysqlmaster
     ports:
       - 80:80
       - 443:443
