@@ -1,0 +1,37 @@
+version: "3"
+
+services:
+      
+
+  db:
+    image: mysql:5.7
+    volumes:
+       - ./db_data/master:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: cake3db
+      MYSQL_ROOT_PASSWORD: p4ssw0rd!
+    ports:
+      - 3306:3306 
+    networks:
+      - back
+      
+      
+  app:
+    build:
+      context: .
+      dockerfile: docker/development/Dockerfile
+    volumes:
+      - ./app_data:/var/www/html
+    hostname: web.local
+    depends_on:
+      - db
+    ports:
+      - 80:80
+      - 443:443
+    networks:
+      - back
+  
+
+networks:
+  back:
+    driver: bridge
