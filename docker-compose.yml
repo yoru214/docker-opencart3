@@ -4,9 +4,11 @@ services:
       
 
   db:
-    image: mysql:5.7
+    build:
+      context: .
+      dockerfile: docker/development/mysql/Dockerfile
     volumes:
-       - ./db_data/master:/var/lib/mysql
+       - ./db_data/development:/var/lib/mysql
     environment:
       MYSQL_DATABASE: cake3db
       MYSQL_ROOT_PASSWORD: p4ssw0rd!
@@ -19,7 +21,7 @@ services:
   app:
     build:
       context: .
-      dockerfile: docker/development/Dockerfile
+      dockerfile: docker/development/apache/Dockerfile
     volumes:
       - ./app_data:/var/www/html
     hostname: web.local

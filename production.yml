@@ -21,18 +21,24 @@ services:
       - db
     volumes:
        - ./db_data/slave:/var/lib/mysql
+       - ./docker/production/mysql/slave/config:/etc/mysql/conf.d/
     environment:
       MYSQL_DATABASE: cake3db
       MYSQL_ROOT_PASSWORD: p4ssw0rd!
+      MYSQL_ROOT_HOST: '%'
     ports:
-      - 3307:3306 
+      - 3307:3306
+    expose:
+    - 3307
+    - 3306
+    
     networks:
       - back
       
   app:
     build:
       context: .
-      dockerfile: docker/production/Dockerfile
+      dockerfile: docker/production/apache/Dockerfile
     volumes:
       - ./app_data:/var/www/html
     hostname: web.local
