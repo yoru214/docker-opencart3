@@ -7,5 +7,5 @@ Installed Application installed
 - Mysql 5.7
 - Composer 1.8.4
 
-[How to use this repo, go to this Hubs Wiki](https://github.com/yoru214/docker-php7.2.16/wiki "Docker YML for PHP7.2-apache's Wiki")
+[How to use this repo, go to this Hubs Wiki](https://github.com/yoru214/docker-php7.2.16/wiki/Welcome! "Docker YML for PHP7.2-apache's Wiki")
 
