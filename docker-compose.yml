@@ -1,10 +1,6 @@
 version: "3"
 
 services:
-<<<<<<< HEAD
-<<<<<<< HEAD
-      
-
   mysqlmaster:
     build:
       context: .
@@ -29,33 +25,11 @@ services:
     hostname: web.local
     depends_on:
       - mysqlmaster
-=======
-=======
->>>>>>> ece486ed2118c688ae2353a9a01803aaa15f702d
-  app:
-    build:
-      context: .
-      dockerfile: docker/apache/Dockerfile
-    volumes:
-      - .:/var/www/html
-    hostname: web.local
-<<<<<<< HEAD
->>>>>>> ece486ed2118c688ae2353a9a01803aaa15f702d
-=======
->>>>>>> ece486ed2118c688ae2353a9a01803aaa15f702d
     ports:
       - 80:80
       - 443:443
     networks:
       - back
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      
->>>>>>> ece486ed2118c688ae2353a9a01803aaa15f702d
-=======
-      
->>>>>>> ece486ed2118c688ae2353a9a01803aaa15f702d
   
 
 networks:
