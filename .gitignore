@@ -1,4 +1,4 @@
 # Database Data #
-/db_data/development
-/db_data/master
-/db_data/slave
+/db_data/development/*
+/db_data/master/*
+/db_data/slave/*
