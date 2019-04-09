@@ -1,14 +1,14 @@
 version: "3"
 
 services:
-  mysqlmaster:
+  mysqldb:
     build:
       context: .
       dockerfile: docker/development/mysql/Dockerfile
     volumes:
        - ./db_data/development:/var/lib/mysql
     environment:
-      MYSQL_DATABASE: cake3db
+      MYSQL_DATABASE: opencart3
       MYSQL_ROOT_PASSWORD: p4ssw0rd!
     ports:
       - 3306:3306 
@@ -21,10 +21,10 @@ services:
       context: .
       dockerfile: docker/development/apache/Dockerfile
     volumes:
-      - ./app:/var/www/html
+      - .:/var/www/html
     hostname: web.local
     depends_on:
-      - mysqlmaster
+      - mysqldb
     ports:
       - 80:80
       - 443:443
